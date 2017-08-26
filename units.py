@@ -2,15 +2,16 @@
 _author_ = "Matthew Zheng"
 _purpose_ = "Get a user specified string of commonly used units and converts the product or remainder into another commonly used unit"
 
-import math
+from productClass import Product
 
 def main():
     #determine which science-unit class to import
     mPorC = None
-    while(mPorC != "math" and mPorC != "physics" and mPorC != "chemistry"):
-        mPorC = input("Please type Math, Physics, or Chemistry to import the proper units for your question.\n").casefold()
-    if(mPorC = "math"):
-        import mathUnits
+    while(mPorC != "both" and mPorC != "physics" and mPorC != "chemistry"):
+        mPorC = input("Please type Physics, Chemistry or Both to import the proper units for your question.\n").casefold()
+    if(mPorC = "both"):
+        import physicsUnits
+        import chemistryUnits
     elif(mPorC = "physics"):
         import physicsUnits
     elif(mPorC = "chemistry"):
@@ -18,7 +19,7 @@ def main():
     else:
         pass
 
-    #determine if we are multiplying or dividing units  
+    #determine if we are multiplying or dividing units
     multiOrDiv = None
     while(multiOrDiv != "m" and multiOrDiv != "d"):
         multiOrDiv = input("Are you multiplying or dividing these units? Use m for multiply and d for divide.\n").casefold()

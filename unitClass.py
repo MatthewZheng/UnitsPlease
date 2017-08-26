@@ -5,7 +5,7 @@ _purpose_ = "Sets up the unit class"
 class Unit:
     '''This is a class of lists'''
     def __init__(self):
-        self.baseUnits = ["m", "kg", "A", "s", "K", "mol", "cd", "rad", "sr"]
+        self.baseUnits = ["m", "kg", "A", "s", "K", "mol", "cd", "L", "C"]
 
     def baseCheck(self, userList):
         '''Converts elements in str list to base units'''
