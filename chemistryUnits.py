@@ -2,4 +2,10 @@
 _author_ = "Matthew Zheng"
 _purpose_ = "Imports all the chemistry units"
 
-import unitsClass
+from productClass import Product
+
+test = Product(["m", "km", "cm", "K"], ["A", "p", "s"])
+print(test.count())
+print(test.cancellable())
+print(test.convertNum())
+print(test.convertDenom())

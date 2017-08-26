@@ -16,9 +16,9 @@ def main():
     elif(mPorC = "chemistry"):
         import chemistryUnits
     else:
-        pass        
+        pass
 
-    #determine if we are multiplying or dividing units
+    #determine if we are multiplying or dividing units  
     multiOrDiv = None
     while(multiOrDiv != "m" and multiOrDiv != "d"):
         multiOrDiv = input("Are you multiplying or dividing these units? Use m for multiply and d for divide.\n").casefold()
