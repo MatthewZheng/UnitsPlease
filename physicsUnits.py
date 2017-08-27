@@ -10,4 +10,4 @@ def tryAll(prod):
     numL = prod.convertNum()
     denomL = prod.convertDenom()
 
-    print("The numerator is", numL, "and the denomiator is", denomL)
+    print("The numerator is", numL, "and the denominator is", denomL)

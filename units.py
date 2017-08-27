@@ -15,7 +15,7 @@ def main():
     if(multiOrDiv == "m"):
         #multiplication parsing
         parseMulti = Product(numL, [])
-
+\
     elif(multiOrDiv == "d"):
         #division parsing
         rawStrDenom = input("Please type out all the units in your reactant/equation's denominator. If you have any negative powers, please put them in the numerator. Format your input with commas. Ex: m, s, kg, etc\n")

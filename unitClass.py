@@ -12,17 +12,22 @@ class Unit:
         converted = []
         for i in (userList):
             #converts non-unary unit to base unit
-            if(i not in self.baseUnits and len(list(i)) != 1):
-                if(len(list(i)) == 1):
-                    continue
+            while(i not in self.baseUnits and len(list(i)) != 1):
                 orgNameList = list(i)
                 #identify prefix removed
                 self.idPrefix = orgNameList.pop(0)
-                print("The program removed the prefix %s and converted your unit to it's base unit: %s." % (self.idPrefix, ''.join(orgNameList)))
-                converted.append("".join(orgNameList))
+                i = ''.join(orgNameList)
+                print("The program removed the prefix %s and converted your unit to it's base unit: %s." % (self.idPrefix, i))
+                #checks if it is a special unit
+                if(i not in self.baseUnits):
+                    #append in case for special units
+                    break
+                else:
+                    #append in case for base unit
+                    break
 
             #Appends base unit
-            elif(i in self.baseUnits):
+            if(i in self.baseUnits):
                 converted.append(i)
 
             #Exception for special units
