@@ -4,8 +4,12 @@ _purpose_ = "Imports all the chemistry units"
 
 from productClass import Product
 
-test = Product(["m", "km", "cm", "K"], ["A", "p", "s"])
-print(test.count())
-print(test.cancellable())
-print(test.convertNum())
-print(test.convertDenom())
+#Switchable cases
+def tryAll(prod):
+    print("hai i ran")
+
+# test = Product(["m", "km", "cm", "K"], ["A", "p", "s"])
+# print(test.count("D"))
+# print(test.cancellable())
+# print(test.convertNum())
+# print(test.convertDenom())

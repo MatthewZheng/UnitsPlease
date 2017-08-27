@@ -10,12 +10,17 @@ class Product(Unit):
         Unit.__init__(self)
         self.numerator = numList
         self.denominator = denomList
-
-
-    def count(self):
-        '''counts how many units are being simplified'''
         self.unitCount = len(self.numerator) + len(self.denominator)
-        return(self.unitCount)
+
+
+    def count(self, nOrD):
+        '''counts how many units are being simplified in either numerator or denominator: n for num, d for denom'''
+        if(nOrD.casefold() == "d"):
+            return(len(self.denominator))
+        elif(nOrD.casefold() == "n"):
+            return(len(self.numerator))
+        else:
+            pass
 
     def cancellable(self):
         '''Find out if the len > 1'''
@@ -30,6 +35,6 @@ class Product(Unit):
         '''Converts all denominators into base units'''
         return(super().baseCheck(self.denominator))
 
-    def simplify(self):
-        '''Assume that everything is in base units'''
+    def derivedToBase(self, userList):
+        '''This will convert any derived units such as N (newtons), T (teslas), etc to their respective base units'''
         pass
