@@ -39,4 +39,7 @@ class Product(Unit):
 
     def derivedToBase(self):
         '''This will convert any derived units such as N (newtons), T (teslas), etc to their respective base units. Output: ([num], [denom])'''
-        pass
+        numL = self.updatedNum
+        denomL = self.updatedDenom
+
+        #Newtons

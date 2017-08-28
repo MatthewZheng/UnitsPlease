@@ -5,7 +5,7 @@ _purpose_ = "Sets up the unit class"
 class Unit:
     '''This is a class of lists'''
     def __init__(self):
-        self.baseUnits = ["m", "kg", "A", "s", "K", "mol", "cd", "L", "C"]
+        self.baseUnits = ["m", "kg", "A", "s", "K", "mol", "cd", "C", "sr", "rad"]
 
     def baseCheck(self, userList):
         '''Converts elements in str list to base units'''
@@ -13,7 +13,7 @@ class Unit:
 
         for i in (userList):
             isSquared = False
-            unitPreIndex = None
+            unitPreIndex = ""
 
             #checks if it has a carat in the expression
             for ind, j in enumerate(list(i)):
@@ -59,6 +59,8 @@ class Unit:
 
                 #append number of units specified by the carat
                 for l in range (intReps):
+                    if(''.join(toAppend) not in self.baseUnits):
+                        print("Your variable %s was not in the commonly used units OR it is a derived unit such as N, newtons -- we will add it to the product regardless." % ''.join(toAppend))
                     converted.append(''.join(toAppend))
 
 

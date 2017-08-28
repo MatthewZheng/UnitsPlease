@@ -9,7 +9,7 @@ def main():
     multiOrDiv = None
     while(multiOrDiv != "m" and multiOrDiv != "d"):
         multiOrDiv = input("Are you multiplying or dividing these units? Use m for multiply and d for divide.\n").casefold()
-        rawStrNum = input("Please type out all the units in your reactant/equation's numerator. If you have any negative powers, please convert them to division and use the division option. Format your input with commas. Ex: m, s, kg, etc\n")
+        rawStrNum = input("Please type out all the units in your reactant/equation's numerator. If you have any negative powers, please put them in the numerator. If you have powers, use a carat to denote where the power starts. Format your input with commas. Ex: m, s^2, kg, etc. If you have variable units, keep them to one character length. Powers can be used.\n")
         numL = [x.strip() for x in rawStrNum.split(',')]
 
     if(multiOrDiv == "m"):
@@ -18,7 +18,7 @@ def main():
 
     elif(multiOrDiv == "d"):
         #division parsing
-        rawStrDenom = input("Please type out all the units in your reactant/equation's denominator. If you have any negative powers, please put them in the numerator. If you have powers, use a carat to denote where the power starts. Format your input with commas. Ex: m, s^2, kg, etc.\n")
+        rawStrDenom = input("Please type out all the units in your reactant/equation's denominator. If you have any negative powers, please put them in the numerator. If you have powers, use a carat to denote where the power starts. Format your input with commas. Ex: m, s^2, kg, etc. If you have variable units, keep them to one character length. Powers can be used.\n")
         denomL = [x.strip() for x in rawStrDenom.split(',')]
         parseDiv = Product(numL, denomL)
     else:
