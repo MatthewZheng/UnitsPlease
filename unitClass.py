@@ -10,10 +10,11 @@ class Unit:
     def baseCheck(self, userList):
         '''Converts elements in str list to base units'''
         converted = []
-        isSquared = False
-        unitPreIndex = None
 
         for i in (userList):
+            isSquared = False
+            unitPreIndex = None
+
             #checks if it has a carat in the expression
             for ind, j in enumerate(list(i)):
                 if j == "^":
