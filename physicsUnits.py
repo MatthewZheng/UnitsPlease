@@ -7,7 +7,11 @@ from productClass import Product
 #Switchable units
 def tryAll(prod):
     #Strip units to base form and assign
-    numL = prod.convertNum()
-    denomL = prod.convertDenom()
+    prod.convertNum()
+    prod.convertDenom()
+    prod.derivedToBase()
+
+    numL = prod.updatedNum
+    denomL = prod.updatedDenom
 
     print("The numerator is", numL, "and the denominator is", denomL)

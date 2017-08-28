@@ -6,4 +6,4 @@ from productClass import Product
 
 #Switchable cases
 def tryAll(prod):
-    print("hai i ran")
+    pass
