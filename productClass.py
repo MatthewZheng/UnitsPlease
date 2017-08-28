@@ -29,12 +29,14 @@ class Product(Unit):
 
     def convertNum(self):
         '''Converts all numerators into base units'''
-        return(super().baseCheck(self.numerator))
+        self.updatedNum = (super().baseCheck(self.numerator))
+        return(self.updatedNum)
 
     def convertDenom(self):
         '''Converts all denominators into base units'''
-        return(super().baseCheck(self.denominator))
+        self.updatedDenom = (super().baseCheck(self.denominator))
+        return(self.updatedDenom)
 
-    def derivedToBase(self, userList):
-        '''This will convert any derived units such as N (newtons), T (teslas), etc to their respective base units'''
+    def derivedToBase(self):
+        '''This will convert any derived units such as N (newtons), T (teslas), etc to their respective base units. Output: ([num], [denom])'''
         pass

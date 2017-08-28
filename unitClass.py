@@ -10,9 +10,20 @@ class Unit:
     def baseCheck(self, userList):
         '''Converts elements in str list to base units'''
         converted = []
+        isSquared = False
+        unitPreIndex = None
+
         for i in (userList):
-            #converts non-unary unit to base unit
-            while(i not in self.baseUnits and len(list(i)) != 1):
+            #checks if it has a carat in the expression
+            for ind, j in enumerate(list(i)):
+                if j == "^":
+                    isSquared = True
+                    unitPreIndex = ''.join(list(i)[:ind])
+                    # print("is squared lol")
+                    break
+
+            #converts non-unary unit to base unit and checks for squared variables
+            while(i not in self.baseUnits and len(list(i)) != 1 and unitPreIndex not in self.baseUnits and len(unitPreIndex) != 1):
                 orgNameList = list(i)
                 #identify prefix removed
                 self.idPrefix = orgNameList.pop(0)
@@ -27,11 +38,32 @@ class Unit:
                     break
 
             #Appends base unit
-            if(i in self.baseUnits):
+            if(i in self.baseUnits and isSquared == False):
                 converted.append(i)
+
+            elif(isSquared == True):
+                toAppend = []
+                numReps = []
+
+                #run once to get number of times the unit is squared
+                for index, val in enumerate(list(i)):
+                    if val == "^":
+                        numStart = index+1
+                        numReps.append(''.join(list(i)[numStart:]))
+                        toAppend.append(''.join(list(i)[:index]))
+                        break
+
+                #convert numReps into an int
+                intReps = int(''.join(numReps))
+
+                #append number of units specified by the carat
+                for l in range (intReps):
+                    converted.append(''.join(toAppend))
+
 
             #Exception for special units
             else:
                 print("Your variable %s was not in the commonly used units OR it is a derived unit such as N, newtons -- we will add it to the product regardless." % i)
                 converted.append(i)
+
         return(converted)

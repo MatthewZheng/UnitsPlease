@@ -15,10 +15,10 @@ def main():
     if(multiOrDiv == "m"):
         #multiplication parsing
         parseMulti = Product(numL, [])
-\
+
     elif(multiOrDiv == "d"):
         #division parsing
-        rawStrDenom = input("Please type out all the units in your reactant/equation's denominator. If you have any negative powers, please put them in the numerator. Format your input with commas. Ex: m, s, kg, etc\n")
+        rawStrDenom = input("Please type out all the units in your reactant/equation's denominator. If you have any negative powers, please put them in the numerator. If you have powers, use a carat to denote where the power starts. Format your input with commas. Ex: m, s^2, kg, etc.\n")
         denomL = [x.strip() for x in rawStrDenom.split(',')]
         parseDiv = Product(numL, denomL)
     else:
