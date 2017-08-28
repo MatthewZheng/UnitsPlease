@@ -380,6 +380,24 @@ class Product(Unit):
         except NameError:
             pass
 
+        #Katal
+        try:
+            for i in range(numL.count("kat")):
+                if("kat" in numL):
+                    numL.remove("kat")
+                    numL.extend(["mol"])
+                    denomL.extend(["s"])
+        except NameError:
+            pass
+        try:
+            for i in range(denomL.count("kat")):
+                if("kat" in denomL):
+                    denomL.remove("kat")
+                    denomL.extend(["mol"])
+                    numL.extend(["s"])
+        except NameError:
+            pass
+
 
         self.updatedNum = numL
         self.updatedDenom = denomL
