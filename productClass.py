@@ -65,7 +65,7 @@ class Product(Unit):
                     numL.extend(["N"])
                     denomL.extend(["m", "m"])
         #Unit not found
-        except NameError:
+    except ValueError:
             pass
         try:
             for i in range(denomL.count("Pa")):
@@ -73,7 +73,7 @@ class Product(Unit):
                     denomL.remove("Pa")
                     denomL.extend(["N"])
                     numL.extend(["m", "m"])
-        except NameError:
+        except ValueError:
             pass
 
         #Farad
@@ -83,7 +83,7 @@ class Product(Unit):
                     numL.remove("F")
                     numL.extend(["C"])
                     denomL.extend(["V"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("F")):
@@ -91,7 +91,7 @@ class Product(Unit):
                     denomL.remove("F")
                     denomL.extend(["C"])
                     numL.extend(["V"])
-        except NameError:
+        except ValueError:
             pass
 
         #Ohm
@@ -101,7 +101,7 @@ class Product(Unit):
                     numL.remove("ohm")
                     numL.extend(["V"])
                     denomL.extend(["A"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("ohm")):
@@ -109,7 +109,7 @@ class Product(Unit):
                     denomL.remove("ohm")
                     denomL.extend(["V"])
                     numL.extend(["A"])
-        except NameError:
+        except ValueError:
             pass
 
         #Siemens
@@ -119,7 +119,7 @@ class Product(Unit):
                     numL.remove("S")
                     numL.extend(["A"])
                     denomL.extend(["V"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("S")):
@@ -127,7 +127,7 @@ class Product(Unit):
                     denomL.remove("S")
                     denomL.extend(["A"])
                     numL.extend(["V"])
-        except NameError:
+        except ValueError:
             pass
 
         #Tesla
@@ -137,7 +137,7 @@ class Product(Unit):
                     numL.remove("T")
                     numL.extend(["Wb"])
                     denomL.extend(["m", "m"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("T")):
@@ -145,7 +145,7 @@ class Product(Unit):
                     denomL.remove("T")
                     denomL.extend(["Wb"])
                     numL.extend(["m", "m"])
-        except NameError:
+        except ValueError:
             pass
 
         #Henry
@@ -155,7 +155,7 @@ class Product(Unit):
                     numL.remove("H")
                     numL.extend(["Wb"])
                     denomL.extend(["A"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("H")):
@@ -163,7 +163,7 @@ class Product(Unit):
                     denomL.remove("H")
                     denomL.extend(["Wb"])
                     numL.extend(["A"])
-        except NameError:
+        except ValueError:
             pass
 
         #Lux
@@ -173,7 +173,7 @@ class Product(Unit):
                     numL.remove("lx")
                     numL.extend(["lm"])
                     denomL.extend(["m","m"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("lx")):
@@ -181,7 +181,7 @@ class Product(Unit):
                     denomL.remove("lx")
                     denomL.extend(["lm"])
                     numL.extend(["m", "m"])
-        except NameError:
+        except ValueError:
             pass
 
         #Gray
@@ -191,7 +191,7 @@ class Product(Unit):
                     numL.remove("Gy")
                     numL.extend(["J"])
                     denomL.extend(["kg"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("Gy")):
@@ -199,7 +199,7 @@ class Product(Unit):
                     denomL.remove("Gy")
                     denomL.extend(["J"])
                     numL.extend(["kg"])
-        except NameError:
+        except ValueError:
             pass
 
         #Sievert
@@ -209,7 +209,7 @@ class Product(Unit):
                     numL.remove("Sv")
                     numL.extend(["J"])
                     denomL.extend(["kg"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("Sv")):
@@ -217,7 +217,23 @@ class Product(Unit):
                     denomL.remove("Sv")
                     denomL.extend(["J"])
                     numL.extend(["kg"])
-        except NameError:
+        except ValueError:
+            pass
+
+        #Calorie
+        try:
+            for i in range(numL.count("cal")):
+                if("cal" in numL):
+                    numL.remove("cal")
+                    numL.extend(["J"])
+        except ValueError:
+            pass
+        try:
+            for i in range(denomL.count("cal")):
+                if("cal" in denomL):
+                    denomL.remove("cal")
+                    denomL.extend(["J"])
+        except ValueError:
             pass
 
         ######################SPECIAL CASES####################
@@ -227,14 +243,14 @@ class Product(Unit):
                 if("°C" in numL):
                     numL.remove("°C")
                     numL.extend(["K"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("°C")):
                 if("°C" in denomL):
                     denomL.remove("°C")
                     denomL.extend(["K"])
-        except NameError:
+        except ValueError:
             pass
 
         #Hertz
@@ -243,14 +259,14 @@ class Product(Unit):
                 if("Hz" in numL):
                     numL.remove("Hz")
                     denomL.extend(["s"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("Hz")):
                 if("Hz" in denomL):
                     denomL.remove("Hz")
                     numL.extend(["s"])
-        except NameError:
+        except ValueError:
             pass
 
         #Becquerel
@@ -259,14 +275,14 @@ class Product(Unit):
                 if("Bq" in numL):
                     numL.remove("Bq")
                     denomL.extend(["s"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("Bq")):
                 if("Bq" in denomL):
                     denomL.remove("Bq")
                     numL.extend(["s"])
-        except NameError:
+        except ValueError:
             pass
         ########################################################
 
@@ -279,7 +295,7 @@ class Product(Unit):
                     numL.remove("N")
                     numL.extend(["kg", "m"])
                     denomL.extend(["s", "s"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("N")):
@@ -287,7 +303,7 @@ class Product(Unit):
                     denomL.remove("N")
                     denomL.extend(["kg", "m"])
                     numL.extend(["s", "s"])
-        except NameError:
+        except ValueError:
             pass
 
         #Joules
@@ -297,7 +313,7 @@ class Product(Unit):
                     numL.remove("J")
                     numL.extend(["m", "m", "kg"])
                     denomL.extend(["s", "s"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("J")):
@@ -305,7 +321,7 @@ class Product(Unit):
                     denomL.remove("J")
                     denomL.extend(["m", "m", "kg"])
                     numL.extend(["s", "s"])
-        except NameError:
+        except ValueError:
             pass
 
         #Volts
@@ -315,7 +331,7 @@ class Product(Unit):
                     numL.remove("V")
                     numL.extend(["m", "m", "kg"])
                     denomL.extend(["s", "s", "s", "A"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("V")):
@@ -323,7 +339,7 @@ class Product(Unit):
                     denomL.remove("V")
                     denomL.extend(["m", "m", "kg"])
                     numL.extend(["s", "s", "s", "A"])
-        except NameError:
+        except ValueError:
             pass
 
         #Webers
@@ -333,7 +349,7 @@ class Product(Unit):
                     numL.remove("Wb")
                     numL.extend(["m", "m", "kg"])
                     denomL.extend(["s", "s", "A"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("Wb")):
@@ -341,7 +357,7 @@ class Product(Unit):
                     denomL.remove("Wb")
                     denomL.extend(["m", "m", "kg"])
                     numL.extend(["s", "s", "A"])
-        except NameError:
+        except ValueError:
             pass
 
         #Watts
@@ -351,7 +367,7 @@ class Product(Unit):
                     numL.remove("W")
                     numL.extend(["m", "m", "kg"])
                     denomL.extend(["s", "s"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("W")):
@@ -359,7 +375,7 @@ class Product(Unit):
                     denomL.remove("W")
                     denomL.extend(["m", "m", "kg"])
                     numL.extend(["s", "s"])
-        except NameError:
+        except ValueError:
             pass
 
         #Lumen
@@ -368,14 +384,14 @@ class Product(Unit):
                 if("lm" in numL):
                     numL.remove("lm")
                     numL.extend(["cd"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("lm")):
                 if("lm" in denomL):
                     denomL.remove("lm")
                     denomL.extend(["cd"])
-        except NameError:
+        except ValueError:
             pass
 
         #Coloumb
@@ -384,14 +400,14 @@ class Product(Unit):
                 if("C" in numL):
                     numL.remove("C")
                     numL.extend(["s", "A"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("C")):
                 if("C" in denomL):
                     denomL.remove("C")
                     denomL.extend(["s", "A"])
-        except NameError:
+        except ValueError:
             pass
 
         #Katal
@@ -401,7 +417,7 @@ class Product(Unit):
                     numL.remove("kat")
                     numL.extend(["mol"])
                     denomL.extend(["s"])
-        except NameError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("kat")):
@@ -409,7 +425,7 @@ class Product(Unit):
                     denomL.remove("kat")
                     denomL.extend(["mol"])
                     numL.extend(["s"])
-        except NameError:
+        except ValueError:
             pass
 
 
