@@ -22,15 +22,29 @@ class Product(Unit):
         else:
             pass
 
-    def convertNum(self):
-        '''Converts all numerators into base units'''
+    def convertUnits(self):
+        '''Converts all numerator and denominator values into base units'''
         self.updatedNum = (super().baseCheck(self.numerator))
-        # return(self.updatedNum)
-
-    def convertDenom(self):
-        '''Converts all denominators into base units'''
         self.updatedDenom = (super().baseCheck(self.denominator))
-        # return(self.updatedDenom)
+
+    def cancel(self):
+        '''Cancels out like units in num and denom'''
+        numL = self.updatedNum
+        denomL = self.updatedDenom
+        removeMe = []
+
+        #determine units to remove
+        for i in numL:
+            if i in denomL:
+                removeMe.append(i)
+
+        #remove units from num and denom
+        for j in removeMe:
+            numL.remove(j)
+            denomL.remove(j)
+
+        self.updatedNum = numL
+        self.updatedDenom = denomL
 
     def derivedToBase(self):
         '''This will convert any derived units such as N (newtons), T (teslas), etc to their respective base units. Output: ([num], [denom])'''
