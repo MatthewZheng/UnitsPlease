@@ -21,11 +21,10 @@ class Unit:
                 if j == "^":
                     isSquared = True
                     unitPreIndex = ''.join(list(i)[:ind])
-                    # print("is squared lol")
                     break
 
             #converts non-unary unit to base unit and checks for squared variables
-            while(i not in (self.baseUnits and self.derivedUnits) and len(list(i)) != 1 and unitPreIndex not in (self.baseUnits and self.derivedUnits) and len(unitPreIndex) != 1):
+            while(i not in (self.baseUnits or self.derivedUnits) and len(list(i)) != 1 and unitPreIndex not in (self.baseUnits or self.derivedUnits) and len(unitPreIndex) != 1):
                 orgNameList = list(i)
                 #identify prefix removed
                 self.idPrefix = orgNameList.pop(0)
@@ -40,7 +39,7 @@ class Unit:
                     break
 
             #Appends base unit
-            if(i in (self.baseUnits and self.derivedUnits) and isSquared == False):
+            if(i in (self.baseUnits or self.derivedUnits) and isSquared == False):
                 converted.append(i)
 
             elif(isSquared == True):
@@ -60,7 +59,7 @@ class Unit:
 
                 #append number of units specified by the carat
                 for l in range (intReps):
-                    if(''.join(toAppend) not in (self.baseUnits and self.derivedUnits)):
+                    if(''.join(toAppend) not in (self.baseUnits or self.derivedUnits)):
                         print("Your variable %s was not in the commonly used units OR it is a derived unit such as N, newtons -- we will add it to the product regardless." % ''.join(toAppend))
                     converted.append(''.join(toAppend))
 
