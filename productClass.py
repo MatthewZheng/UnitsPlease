@@ -33,21 +33,21 @@ class Product(Unit):
         denomL = self.updatedDenom
         removeMe = []
 
-        #determine units to remove
+        #determine units to remove and remove from denom *not removed from numL because iteration is taking place
         for i in numL:
             if i in denomL:
                 removeMe.append(i)
+                denomL.remove(i)
 
-        #remove units from num and denom
+        #remove units from num
         for j in removeMe:
             numL.remove(j)
-            denomL.remove(j)
 
         self.updatedNum = numL
         self.updatedDenom = denomL
 
     def derivedToBase(self):
-        '''This will convert any derived units such as N (newtons), T (teslas), etc to their respective base units. Output: ([num], [denom])'''
+        '''This will convert any derived units such as N (newtons), T (teslas), etc to their respective base units. Changes: ([self.updatedNum], [self.updatedDenom])'''
         numL = self.updatedNum
         denomL = self.updatedDenom
 
@@ -65,7 +65,7 @@ class Product(Unit):
                     numL.extend(["N"])
                     denomL.extend(["m", "m"])
         #Unit not found
-    except ValueError:
+        except ValueError:
             pass
         try:
             for i in range(denomL.count("Pa")):
