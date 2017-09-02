@@ -23,201 +23,137 @@ def tryAll(prod):
 
 
     #############Begin unit conversion cases####################################
-    if("m" in numL or "m" in denomL):
+    #Joule
+    try:
+        derivedN = ["m", "m", "kg"]
+        derivedD = ["s", "s"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedN.append("J")
+            numL.remove("kg")
+            numL.remove("m")
+            numL.remove("m")
+            denomL.remove("s")
+            denomL.remove("s")
+    #wrong unit
+    except ValueError:
+        pass
+    #check for inverse unit
+    try:
+        derivedN = ["s", "s"]
+        derivedD = ["m", "m", "kg"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedD.append("J")
+            numL.remove("s")
+            numL.remove("s")
+            denomL.remove("kg")
+            denomL.remove("m")
+            denomL.remove("m")
+    #wrong unit
+    except ValueError:
+        pass
 
-        # #Watts
-        # try:
-        #     count = 0
-        #     cont = False
-        #     #determine what units to remove and append simplified to final values
-        #     while(cont == False):
-        #         #modify the external list
-        #         if(all((x in numL for x in ["kg", "m", "m"])) and all(y in denomL for y in ["s", "s", "s"])):
-        #             simplifiedN.append("W")
-        #             count += 1
-        #             numL.remove("kg")
-        #             numL.remove("m")
-        #             numL.remove("m")
-        #             denomL.remove("s")
-        #             denomL.remove("s")
-        #             denomL.remove("s")
-        #         else:
-        #             cont = True
-        #     #assignment only occurs when the conditional for the base units are met
-        #     if count > 0:
-        #         print(numL)
-        #         print(denomL)
-        #         simplifiedN.extend(numL)
-        #         simplifiedD.extend(denomL)
-        # #values are not present
-        # except ValueError:
-        #     pass
-        #
-        # #Check for inverted unit
-        # try:
-        #     count = 0
-        #     cont = False
-        #     while(cont == False):
-        #         #modify the external list
-        #         if(all((j in denomL for j in ["kg", "m", "m"])) and all(k in numL for k in ["s", "s", "s"])):
-        #             simplifiedD.append("W")
-        #             count += 1
-        #             denomL.remove("kg")
-        #             denomL.remove("m")
-        #             denomL.remove("m")
-        #             numL.remove("s")
-        #             numL.remove("s")
-        #             numL.remove("s")
-        #         else:
-        #             cont = True
-        #     if count > 0:
-        #         print(numL)
-        #         print(denomL)
-        #         simplifiedN.extend(numL)
-        #         simplifiedD.extend(denomL)
-        # #values are not present
-        # except ValueError:
-        #     pass
-        #
-        # #Joules
-        # try:
-        #     count = 0
-        #     cont = False
-        #     #determine what units to remove and append simplified to final values
-        #     while(cont == False):
-        #         #modify the external list
-        #         if(all((x in numL for x in ["kg", "m", "m"])) and all(y in denomL for y in ["s", "s"])):
-        #             simplifiedN.append("J")
-        #             count += 1
-        #             numL.remove("kg")
-        #             numL.remove("m")
-        #             numL.remove("m")
-        #             denomL.remove("s")
-        #             denomL.remove("s")
-        #         else:
-        #             cont = True
-        #     #assignment only occurs when the conditional for the base units are met
-        #     if count > 0:
-        #         print(numL)
-        #         print(denomL)
-        #         simplifiedN.extend(numL)
-        #         simplifiedD.extend(denomL)
-        # except ValueError:
-        #     pass
-        #
-        # try:
-        #     count = 0
-        #     cont = False
-        #     while(cont == False):
-        #         #modify the external list
-        #         if(all((j in denomL for j in ["kg", "m", "m"])) and all(k in numL for k in ["s", "s"])):
-        #             simplifiedD.append("J")
-        #             count += 1
-        #             denomL.remove("kg")
-        #             denomL.remove("m")
-        #             denomL.remove("m")
-        #             numL.remove("s")
-        #             numL.remove("s")
-        #         else:
-        #             cont = True
-        #     if count > 0:
-        #         print(numL)
-        #         print(denomL)
-        #         simplifiedN.extend(numL)
-        #         simplifiedD.extend(denomL)
-        # except ValueError:
-        #     pass
-        #
-        #
-        # #Pascals
-        # try:
-        #     count = 0
-        #     cont = False
-        #     while(cont == False):
-        #         if(all((x in numL for x in ["kg"])) and all(y in denomL for y in ["m", "s", "s"])):
-        #             simplifiedN.append("Pa")
-        #             count += 1
-        #             numL.remove("kg")
-        #             denomL.remove("m")
-        #             denomL.remove("s")
-        #             denomL.remove("s")
-        #         else:
-        #             cont = True
-        #     if count > 0:
-        #         print(numL)
-        #         print(denomL)
-        #         simplifiedN.extend(numL)
-        #         simplifiedD.extend(denomL)
-        # except ValueError:
-        #     pass
-        #
-        # try:
-        #     count = 0
-        #     cont = False
-        #     while(cont == False):
-        #         if(all((j in denomL for j in ["kg"])) and all(k in numL for k in ["m", "s", "s"])):
-        #             simplifiedD.append("Pa")
-        #             count += 1
-        #             denomL.remove("kg")
-        #             numL.remove("m")
-        #             numL.remove("s")
-        #             numL.remove("s")
-        #         else:
-        #             cont = True
-        #     if count > 0:
-        #         print(numL)
-        #         print(denomL)
-        #         simplifiedN.extend(numL)
-        #         simplifiedD.extend(denomL)
-        # except ValueError:
-        #     pass
-
-        #Newtons
-        try:
-            count = 0
-            cont = False
-            while(cont == False):
-                if(all((x in numL for x in ["kg", "m"])) and all(y in denomL for y in ["s", "s"])):
-                    simplifiedN.append("N")
-                    count += 1
-                    numL.remove("kg")
-                    numL.remove("m")
-                    denomL.remove("s")
-                    denomL.remove("s")
-                else:
-                    cont = True
-            if count > 0:
-                print(numL)
-                print(denomL)
-                simplifiedN.extend(numL)
-                simplifiedD.extend(denomL)
-        except ValueError:
-            pass
-
-        try:
-            count = 0
-            cont = False
-            while(cont == False):
-                if(all((j in denomL for j in ["kg", "m"])) and all(k in numL for k in ["s", "s"])):
-                    simplifiedD.append("N")
-                    count += 1
-                    denomL.remove("kg")
-                    denomL.remove("m")
-                    numL.remove("s")
-                    numL.remove("s")
-                else:
-                    cont = True
-            if count > 0:
-                print(numL)
-                print(denomL)
-                simplifiedN.extend(numL)
-                simplifiedD.extend(denomL)
-        except ValueError:
-            pass
+    #Pascal
+    try:
+        derivedN = ["kg"]
+        derivedD = ["m", "s", "s"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedN.append("Pa")
+            numL.remove("kg")
+            denomL.remove("m")
+            denomL.remove("s")
+            denomL.remove("s")
+    except ValueError:
+        pass
+    try:
+        derivedN = ["m", "s", "s"]
+        derivedD = ["kg"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedD.append("Pa")
+            numL.remove("m")
+            numL.remove("s")
+            numL.remove("s")
+            denomL.remove("kg")
+    except ValueError:
+        pass
 
 
+    #Newtons
+    try:
+        derivedN = ["kg", "m"]
+        derivedD = ["s", "s"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedN.append("N")
+            numL.remove("kg")
+            numL.remove("m")
+            denomL.remove("s")
+            denomL.remove("s")
+    except ValueError:
+        pass
+    try:
+        derivedN = ["s", "s"]
+        derivedD = ["kg", "m"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedD.append("N")
+            numL.remove("s")
+            numL.remove("s")
+            denomL.remove("kg")
+            denomL.remove("m")
+    except ValueError:
+        pass
 
 
-
+    #assignment
+    simplifiedN.extend(numL)
+    simplifiedD.extend(denomL)
 
     print("NEW: The numerator is", simplifiedN, "and the denominator is", simplifiedD)
