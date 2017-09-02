@@ -366,7 +366,7 @@ class Product(Unit):
                 if("W" in numL):
                     numL.remove("W")
                     numL.extend(["m", "m", "kg"])
-                    denomL.extend(["s", "s"])
+                    denomL.extend(["s", "s", "s"])
         except ValueError:
             pass
         try:
@@ -374,7 +374,7 @@ class Product(Unit):
                 if("W" in denomL):
                     denomL.remove("W")
                     denomL.extend(["m", "m", "kg"])
-                    numL.extend(["s", "s"])
+                    numL.extend(["s", "s", "s"])
         except ValueError:
             pass
 

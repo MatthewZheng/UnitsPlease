@@ -13,9 +13,6 @@ def tryAll(prod):
     prod.convertUnits()
     prod.derivedToBase()
 
-    #cancel out like units
-    prod.cancel()
-
     #assignment and print values
     numL = prod.updatedNum
     denomL = prod.updatedDenom
@@ -23,6 +20,136 @@ def tryAll(prod):
 
 
     #############Begin unit conversion cases####################################
+    #Volt
+    try:
+        derivedN = ["m", "m", "kg"]
+        derivedD = ["s", "s", "s", "A"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedN.append("V")
+            numL.remove("m")
+            numL.remove("m")
+            numL.remove("kg")
+            denomL.remove("s")
+            denomL.remove("s")
+            denomL.remove("s")
+            denomL.remove("A")
+
+    #wrong unit
+    except ValueError:
+        pass
+    #check for inverse unit
+    try:
+        derivedN = ["s", "s", "s", "A"]
+        derivedD = ["m", "m", "kg"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedD.append("V")
+            denomL.remove("m")
+            denomL.remove("m")
+            denomL.remove("kg")
+            numL.remove("s")
+            numL.remove("s")
+            numL.remove("s")
+            numL.remove("A")
+    #wrong unit
+    except ValueError:
+        pass
+
+    #Coloumb
+    try:
+        derivedN = ["s", "A"]
+        derivedD = []
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedN.append("C")
+            numL.remove("s")
+            numL.remove("A")
+    except ValueError:
+        pass
+    try:
+        derivedN = []
+        derivedD = ["s", "A"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedD.append("C")
+            denomL.remove("s")
+            denomL.remove("A")
+    except ValueError:
+        pass
+
+    #Watt
+    try:
+        derivedN = ["m", "m", "kg"]
+        derivedD = ["s", "s", "s"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedN.append("W")
+            numL.remove("kg")
+            numL.remove("m")
+            numL.remove("m")
+            denomL.remove("s")
+            denomL.remove("s")
+            denomL.remove("s")
+    except ValueError:
+        pass
+    try:
+        derivedN = ["s", "s", "s"]
+        derivedD = ["m", "m", "kg"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedD.append("W")
+            numL.remove("s")
+            numL.remove("s")
+            numL.remove("s")
+            denomL.remove("kg")
+            denomL.remove("m")
+            denomL.remove("m")
+    except ValueError:
+        pass
+
     #Joule
     try:
         derivedN = ["m", "m", "kg"]
@@ -42,10 +169,8 @@ def tryAll(prod):
             numL.remove("m")
             denomL.remove("s")
             denomL.remove("s")
-    #wrong unit
     except ValueError:
         pass
-    #check for inverse unit
     try:
         derivedN = ["s", "s"]
         derivedD = ["m", "m", "kg"]
@@ -64,7 +189,6 @@ def tryAll(prod):
             denomL.remove("kg")
             denomL.remove("m")
             denomL.remove("m")
-    #wrong unit
     except ValueError:
         pass
 
@@ -150,7 +274,10 @@ def tryAll(prod):
             denomL.remove("m")
     except ValueError:
         pass
+        
 
+    #cancel out like units
+    prod.cancel()
 
     #assignment
     simplifiedN.extend(numL)
