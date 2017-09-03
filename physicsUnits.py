@@ -20,6 +20,87 @@ def tryAll(prod):
 
 
     #############Begin unit conversion cases####################################
+    #Katal
+    try:
+        derivedN = ["mol"]
+        derivedD = ["s"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedN.append("kat")
+            numL.remove("mol")
+            denomL.remove("s")
+
+    #wrong unit
+    except ValueError:
+        pass
+    #check for inverse unit
+    try:
+        derivedN = ["s"]
+        derivedD = ["mol"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedD.append("kat")
+            numL.remove("s")
+            denomL.remove("mol")
+
+    #wrong unit
+    except ValueError:
+        pass
+
+
+    #Lux
+    try:
+        derivedN = ["cd"]
+        derivedD = ["m", "m"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedN.append("lx")
+            numL.remove("cd")
+            denomL.remove("m")
+            denomL.remove("m")
+    except ValueError:
+        pass
+    try:
+        derivedN = ["m", "m"]
+        derivedD = ["cd"]
+        #check for membership in base dervied units
+        for i in numL:
+            if i in derivedN:
+                derivedN.remove(i)
+        for j in denomL:
+            if j in derivedD:
+                derivedD.remove(j)
+        #check if a substitution of units can occur
+        if (derivedN == [] and derivedD == []):
+            simplifiedD.append("lx")
+            numL.remove("m")
+            numL.remove("m")
+            denomL.remove("cd")
+    except ValueError:
+        pass
+
+
     #Henry
     try:
         derivedN = ["m", "m", "kg"]
@@ -41,13 +122,10 @@ def tryAll(prod):
             denomL.remove("s")
             denomL.remove("A")
             denomL.remove("A")
-
-    #wrong unit
     except ValueError:
         pass
-    #check for inverse unit
     try:
-        derivedN = ["s", "s", "A", "A"  ]
+        derivedN = ["s", "s", "A", "A"]
         derivedD = ["m", "m", "kg"]
         #check for membership in base dervied units
         for i in numL:
@@ -66,11 +144,8 @@ def tryAll(prod):
             denomL.remove("kg")
             denomL.remove("m")
             denomL.remove("m")
-
-    #wrong unit
     except ValueError:
         pass
-
 
 
     #Tesla
